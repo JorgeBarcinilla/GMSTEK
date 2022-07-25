@@ -1,0 +1,48 @@
+  <table mat-table [dataSource]="dataSource" class="bg-transparent w-full">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="merchant_description">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Merchant Description </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'"  class="px-2" *matCellDef="let element; let i = index"> {{element.merchant_description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="product_code">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Product Code </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index"> {{element.product_code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Quantity </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index"> {{element.quantity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="retail_price">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Retail Price </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index"> {{element.retail_price | currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gov_price">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Gov Price </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index"> {{element.gov_price | currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef> Amount </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index"> {{element.amount | currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell class="px-2  font-extrabold text-sm text-inherit" *matHeaderCellDef>  </th>
+      <td mat-cell [ngClass]="(dataSource.data.length - 1) === i ? 'font-extrabold border-0' : 'font-semibold'" class="px-2" *matCellDef="let element; let i = index">
+        <ng-container *ngIf="(dataSource.data.length - 1) > i">
+          <button mat-raised-button class="bg-default-600 mx-1 text-white">Dispute</button>
+          <button mat-raised-button color="primary" class="mx-1">Accept</button>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsNames"></tr>
+    <tr mat-row class="hover:bg-slate-100 dark:hover:bg-default-500 cursor-pointer" *matRowDef="let element; columns: columnsNames;" (click)="selectDetail(element)"></tr>
+  </table>

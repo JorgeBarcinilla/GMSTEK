@@ -3,7 +3,11 @@
 @import 'tailwindcss/utilities';
 
 @import './app/theme/theme.scss';
-
+*{
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Nunito', sans-serif, "Helvetica Neue", sans-serif; }
 
@@ -24,14 +28,14 @@ body { margin: 0; font-family: 'Nunito', sans-serif, "Helvetica Neue", sans-seri
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--theme-primary-500);
+  background: var(--theme-primary-300);
   opacity: 0.4;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--theme-primary-500);
+  background: var(--theme-primary-400);
   opacity: 0.6;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }

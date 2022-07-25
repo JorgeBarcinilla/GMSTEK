@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ThemeMode } from 'src/app/theme/models/theme.enum';
+import { ThemeService } from 'src/app/theme/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +9,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent implements OnInit {
+  ThemeMode = ThemeMode;
 
-  constructor() { }
+  constructor(public themeService: ThemeService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  changeThemeMode(){
+    this.themeService.changeThemeMode(this.themeService.getCurrentTheme().themeMode === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK, this.themeService.getCurrentTheme().themeMode)
   }
 
 }

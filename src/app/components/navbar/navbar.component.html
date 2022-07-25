@@ -1,6 +1,6 @@
 <nav class="flex items-center h-14 bg-white dark:bg-default-600">
   <div class="grow flex items-center px-3 sm:px-6">
-    <mat-icon class="text-gray-500 dark:text-gray-400 font-bold">search</mat-icon>
+    <mat-icon class="text-default-300 dark:text-default-200  font-bold">search</mat-icon>
     <div class="grow px-2">
       <input class="text-base font-bold w-full outline-none truncate p-1 rounded-lg bg-transparent" type="text" placeholder="Search transactions, invoices, cards or merchants">
     </div>
@@ -8,17 +8,20 @@
   <div class="flex-none p-2">
     <div class="flex flex-row items-center divide-x divide-default-50 dark:divide-default-400">
       <div class="px-2 hidden sm:block">
-        <button mat-icon-button aria-label="Example icon button with a menu icon">
-          <mat-icon class="text-gray-500 dark:text-gray-400">support</mat-icon>
+        <button mat-icon-button (click)="changeThemeMode()">
+          <mat-icon class="text-default-300 dark:text-yellow-500 ">{{themeService.getCurrentTheme().themeMode === ThemeMode.DARK ? 'light_mode' : 'dark_mode'}}</mat-icon>
         </button>
-        <button mat-icon-button aria-label="Example icon button with a menu icon">
-          <mat-icon class="text-gray-500 dark:text-gray-400" matBadge="1" matBadgeColor="accent" matBadgeSize="small">notifications</mat-icon>
+        <button mat-icon-button >
+          <mat-icon class="text-default-300 dark:text-default-200 ">support</mat-icon>
+        </button>
+        <button mat-icon-button >
+          <mat-icon class="text-default-300 dark:text-default-200 " matBadge="1" matBadgeColor="accent" matBadgeSize="small">notifications</mat-icon>
         </button>
       </div>
       <div class="px-2 flex items-center">
         <span class="text-base text-gray-500 dark:text-inherit px-2 font-semibold">Jim Wiley</span>
         <img class="inline-block h-9 w-9 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-        <mat-icon class="text-gray-500 dark:text-gray-400" inline>expand_more</mat-icon>
+        <mat-icon class="text-default-300 dark:text-default-200 " inline>expand_more</mat-icon>
       </div>
     </div>
   </div>

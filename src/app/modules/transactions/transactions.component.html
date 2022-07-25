@@ -1,4 +1,35 @@
 <div class="flex flex-col  h-full">
-  <app-navbar class="shadow-md"></app-navbar>
+  <app-navbar class="shadow-md z-10"></app-navbar>
+  <div class="grow overflow-auto p-0 sm:py-2 sm:px-4">
+    <div class="flex flex-col gap-y-6 py-2 px-4">
+        <div class="flex flex-row flex-nowrap gap-4 bg-primary-700 dark:bg-primary-300 rounded-lg shadow p-3 overflow-y-auto">
+          <app-action-card [title]="'Accept Transactions'" [properties]="['new', 'disputed']" [transactions]="acceptTransactions$ | async"  class="bg-default-50 dark:bg-default-800 rounded-lg"></app-action-card>
+          <app-action-card [title]="'Invoice Tasks'" [properties]="['new', 'delinquent', 'disputed', 'rejected']"  [transactions]="invoiceTasksTransactions$ | async" class="bg-white dark:bg-default-700 shadow-lg rounded-lg"></app-action-card>
+      </div>
+        <div class="flex flex-row">
+          <span class="text-2xl font-extrabold"> Current Transactions </span>
+        </div>
+        <mat-tab-group >
+          <mat-tab #tabAccept>
+            <ng-template mat-tab-label>
+              <span class="text-lg font-bold" [ngClass]="{'text-primary-700 dark:text-white' : tabAccept.isActive}">
+                <span class="mx-2">{{ (acceptTransactions$ | async )?.length }}</span>
+                <span>Transactions to Accept</span>
+              </span>
+            </ng-template>
+            <app-transactions-tab-content [transactions]="(acceptTransactions$ | async) || []"></app-transactions-tab-content>
+          </mat-tab>
 
+          <mat-tab #tabReview>
+            <ng-template mat-tab-label>
+              <span class="text-lg font-bold" [ngClass]="{'text-primary-700  dark:text-white' : tabReview.isActive}">
+                <span class="mx-2">{{ ((transactions$ | async)?.length || 0) - ((acceptTransactions$ | async)?.length || 0)}}</span>
+                <span>Transactions to Review</span>
+              </span>
+            </ng-template>
+            <app-transactions-tab-content [transactions]="(invoiceTasksTransactions$ | async) || []"></app-transactions-tab-content>
+          </mat-tab>
+        </mat-tab-group>
+    </div>
+  </div>
 </div>

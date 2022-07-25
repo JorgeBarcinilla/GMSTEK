@@ -1,0 +1,31 @@
+<div class="flex flex-col">
+  <div class="flex flex-col lg:flex-row gap-y-4 gap-x-28 py-6 ">
+    <div class="grow">
+      <div class="flex flex-row items-center gap-4">
+        <div class="grow rounded-lg bg-white dark:bg-default-600 p-1 shadow-md">
+          <div class="flex items-center">
+            <mat-icon class="text-default-300 dark:text-default-200  font-bold mx-4">search</mat-icon>
+            <div class="grow">
+              <input class="text-base w-full outline-none truncate p-1 rounded-lg bg-transparent" [formControl]="searchTransactionControl" type="text" placeholder="Search transactions by Merchant Invoice, Card, ICAO, Tail # or DoDAAC">
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button class="rounded-lg">
+          <mat-icon class="text-default-300 dark:text-default-200 ">filter_alt</mat-icon>
+          Filter
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-row justify-between gap-4 items-center">
+      <button mat-raised-button class="rounded-lg">
+        <mat-icon class="text-default-300 dark:text-default-200 ">print</mat-icon>
+        Print Selected
+      </button>
+      <button mat-raised-button class="rounded-lg">
+        <mat-icon class="text-default-300 dark:text-default-200 ">download</mat-icon>
+        Export Selected
+      </button>
+    </div>
+  </div>
+  <app-transactions-table [data]="displayedTransactions"></app-transactions-table>
+</div>
